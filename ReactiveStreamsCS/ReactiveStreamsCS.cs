@@ -67,10 +67,27 @@ namespace ReactiveStreamsCS
         /// <param name="s">The ISubscription that allows requesting data via ISubscription.Request(long).</param>
         void OnSubscribe(ISubscription s);
 
+        /// <summary>
+        /// Data notification sent by the IPublisher in response to requests to ISubscription.Request(long).
+        /// </summary>
+        /// <param name="t">The element signaled.</param>
         void OnNext(T t);
 
+        /// <summary>
+        /// Failed terminal state.
+        /// </summary>
+        /// <remarks>
+        /// No further events will be sent even if ISubscription.Request(long) is invoked again.
+        /// </remarks>
+        /// <param name="e">The Exception signaled.</param>
         void OnError(Exception e);
 
+        /// <summary>
+        /// Successful terminal state.
+        /// </summary>
+        /// <remarks>
+        /// No further events will be sent even if ISubscription.Request(long) is invoked again.
+        /// </remarks>
         void OnComplete();
     }
 
